@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, Button, Alert } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../actions';
+import { Navigation } from './components';
 
 function Dashboard() {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ function Dashboard() {
 
   return (
     <>
+      <Navigation />
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Profile</h2>

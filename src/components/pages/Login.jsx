@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Form, Button, Card, Alert } from 'react-bootstrap';
+import { Form, Button, Card, Alert, Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
@@ -26,32 +26,39 @@ function Login() {
   }
 
   return (
-    <Card>
-      <Card.Body>
-        <h2 className="text-center mb-4">Log In</h2>
-        {error && <Alert variant="danger">{error}</Alert>}
-        <Form onSubmit={handleSubmit}>
-          <Form.Group id="name">
-            <Form.Label>Name</Form.Label>
-            <Form.Control type="name" ref={nameRef} required />
-          </Form.Group>
-          <Form.Group id="password">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" ref={passwordRef} required />
-          </Form.Group>
-          <div className="w-100 text-center mt-3 mb-3">
-            <Link to={routes.REGISTER}>Register now</Link>
-          </div>
-          <Button
-            disabled={userState.isRequestInProgress}
-            className="w-100"
-            type="submit"
-          >
-            Log In
-          </Button>
-        </Form>
-      </Card.Body>
-    </Card>
+    <Container
+      className="d-flex align-items-center justify-content-center"
+      style={{ minHeight: '100vh' }}
+    >
+      <div className="w-100">
+        <Card style={{ width: '400px', margin: 'auto' }}>
+          <Card.Body>
+            <h2 className="text-center mb-4">Log In</h2>
+            {error && <Alert variant="danger">{error}</Alert>}
+            <Form onSubmit={handleSubmit}>
+              <Form.Group id="name">
+                <Form.Label>Name</Form.Label>
+                <Form.Control type="name" ref={nameRef} required />
+              </Form.Group>
+              <Form.Group id="password">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" ref={passwordRef} required />
+              </Form.Group>
+              <div className="w-100 text-center mt-3 mb-3">
+                <Link to={routes.REGISTER}>Register now</Link>
+              </div>
+              <Button
+                disabled={userState.isRequestInProgress}
+                className="w-100"
+                type="submit"
+              >
+                Log In
+              </Button>
+            </Form>
+          </Card.Body>
+        </Card>
+      </div>
+    </Container>
   );
 }
 
