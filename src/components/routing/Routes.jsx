@@ -8,7 +8,7 @@ function Routes() {
   return (
     <Router>
       <Switch>
-        <PrivateRoute exact path={routes.DASHBOARD} component={Dashboard} />
+        <PrivateRoute path={routes.DASHBOARD} component={Dashboard} />
         <Route path={routes.LOGIN} component={Login} />
         <Route path={routes.REGISTER} component={Register} />
       </Switch>

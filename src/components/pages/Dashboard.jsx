@@ -1,33 +1,20 @@
 import React from 'react';
-import { Card, Button, Alert } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import { userActions } from '../../actions';
-import { Navigation } from './components';
+import { Switch } from 'react-router-dom';
+import { routes } from '../../constants';
+import { PrivateRoute } from '../auth';
+import { MainLayout } from './components';
+import { Machine } from './Machine';
+import { Purchases } from './Purchases';
 
 function Dashboard() {
-  const dispatch = useDispatch();
-  const { user, error } = useSelector((state) => state.user);
-
-  function handleLogout() {
-    dispatch(userActions.logoutUser());
-  }
-
   return (
-    <>
-      <Navigation />
-      <Card>
-        <Card.Body>
-          <h2 className="text-center mb-4">Profile</h2>
-          {error && <Alert variant="danger">{error}</Alert>}
-          <strong>Name:</strong> {user.name}
-        </Card.Body>
-      </Card>
-      <div className="w-100 text-center mt-2">
-        <Button variant="link" onClick={handleLogout}>
-          Log Out
-        </Button>
-      </div>
-    </>
+    <MainLayout>
+      <Switch>
+        <PrivateRoute exact path={routes.DASHBOARD} component={Purchases} />
+        <PrivateRoute exact path={routes.PURCHASES} component={Purchases} />
+        <PrivateRoute exact path={routes.MACHINE} component={Machine} />
+      </Switch>
+    </MainLayout>
   );
 }
 

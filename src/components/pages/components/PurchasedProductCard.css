@@ -1,0 +1,36 @@
+.purchase-card {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    padding: 1rem;
+    background-color: #f0f0f0;
+    border-radius: 0.5rem;
+}
+
+.purchase-card .purchase-card-details {
+    margin-bottom: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.purchase-card .purchase-card-details .purchase-card-name {
+    font-size: 1.5rem;
+}
+
+.purchase-card .purchase-card-costs {
+    display: flex;
+    flex-direction: column;
+}
+
+.purchase-card .purchase-card-costs .purchase-card-single-cost {
+
+}
+
+.purchase-card .purchase-card-costs .purchase-card-amount-bought {
+
+}
+
+.purchase-card .purchase-card-costs .purchase-card-total-cost {
+    color: #0f7efe;
+}
