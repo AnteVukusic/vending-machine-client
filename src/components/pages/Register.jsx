@@ -12,7 +12,6 @@ function Register() {
   const roleRef = useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
-  const error = null;
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -36,7 +35,7 @@ function Register() {
         <Card style={{ width: '400px', margin: 'auto' }}>
           <Card.Body>
             <h2 className="text-center mb-4">Register</h2>
-            {error && <Alert variant="danger">{error}</Alert>}
+            {userState.error && <Alert variant="danger">{userState.error}</Alert>}
             <Form onSubmit={handleSubmit}>
               <Form.Group id="name">
                 <Form.Label>Name</Form.Label>

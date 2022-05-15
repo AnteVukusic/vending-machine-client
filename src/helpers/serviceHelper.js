@@ -1,4 +1,4 @@
-import { routes } from '../constants/routes';
+import { routes } from '../constants';
 import { tokenHelper } from './tokenHelper';
 
 const handleResponse = (response) => response.text().then((text) => {
@@ -20,7 +20,7 @@ const authFetch = async (input, init, excludeTracker) => {
 
   fetchInit.headers = {
     ...(init ? init.headers : {}),
-    Authorization: `Bearer ${token}`,
+    Authorization: `${token}`,
   };
   if (excludeTracker) {
     return fetch(input, fetchInit);

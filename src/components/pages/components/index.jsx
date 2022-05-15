@@ -1,3 +1,4 @@
 export * from './Navigation';
-export * from './PurchasedProductCard';
 export * from './MainLayout';
+export * from './PurchasedProductCard';
+export * from './OwnedProductCard';

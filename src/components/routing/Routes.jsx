@@ -8,9 +8,9 @@ function Routes() {
   return (
     <Router>
       <Switch>
+        <Route exact path={routes.LOGIN} component={Login} />
+        <Route exact path={routes.REGISTER} component={Register} />
         <PrivateRoute path={routes.DASHBOARD} component={Dashboard} />
-        <Route path={routes.LOGIN} component={Login} />
-        <Route path={routes.REGISTER} component={Register} />
       </Switch>
     </Router>
   );

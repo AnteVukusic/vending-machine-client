@@ -4,4 +4,6 @@ export const routes = {
   DASHBOARD: '/',
   MACHINE: '/machine',
   PURCHASES: '/purchases',
+  OWNING_PRODUCTS: '/owned-products',
+  NEW_PRODUCT: '/new-product',
 };

@@ -49,19 +49,27 @@ function Navigation() {
         );
       case roles.SELLER:
         return (
-          <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
-            <Navbar.Text style={{ marginRight: '1rem' }}>
-              Logged as {user.name}
-            </Navbar.Text>
-            <Navbar.Text>
-              Deposit: ${user.deposit}
-            </Navbar.Text>
-            <Nav.Item>
-              <Button variant="link" onClick={handleLogout}>
-                Log Out
-              </Button>
-            </Nav.Item>
-          </Navbar.Collapse>
+          <>
+            <Navbar.Collapse id="basic-navbar-nav" className="justify-content-start">
+              <Nav>
+                <Nav.Item>
+                  <Nav.Link href={routes.OWNING_PRODUCTS}>
+                    Your products
+                  </Nav.Link>
+                </Nav.Item>
+              </Nav>
+            </Navbar.Collapse>
+            <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+              <Navbar.Text style={{ marginRight: '1rem' }}>
+                Logged as {user.name}
+              </Navbar.Text>
+              <Nav.Item>
+                <Button variant="link" onClick={handleLogout}>
+                  Log Out
+                </Button>
+              </Nav.Item>
+            </Navbar.Collapse>
+          </>
         );
       default:
         return null;

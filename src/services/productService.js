@@ -8,7 +8,7 @@ const postProduct = (productData) => {
     },
     body: JSON.stringify(productData),
   };
-  return serviceHelper.openFetch(`${process.env.REACT_APP_API_URL}/product/add-product`, requestOptions).then(serviceHelper.handleResponse);
+  return serviceHelper.authFetch(`${process.env.REACT_APP_API_URL}/product/add-product`, requestOptions).then(serviceHelper.handleResponse);
 };
 
 const putProduct = (productData) => {
@@ -19,17 +19,18 @@ const putProduct = (productData) => {
     },
     body: JSON.stringify(productData),
   };
-  return serviceHelper.openFetch(`${process.env.REACT_APP_API_URL}/product/update-product`, requestOptions).then(serviceHelper.handleResponse);
+  return serviceHelper.authFetch(`${process.env.REACT_APP_API_URL}/product/update-product`, requestOptions).then(serviceHelper.handleResponse);
 };
 
-const getProducts = () => {
+const getProducts = (sellerId) => {
   const requestOptions = {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
   };
-  return serviceHelper.authFetch(`${process.env.REACT_APP_API_URL}/product/get-products`, requestOptions).then(serviceHelper.handleResponse);
+
+  return serviceHelper.authFetch(`${process.env.REACT_APP_API_URL}/product/get-products/${sellerId || ''}`, requestOptions).then(serviceHelper.handleResponse);
 };
 
 const getProduct = (productId) => {
@@ -60,7 +61,7 @@ const buyProducts = (purchaceData) => {
     },
     body: JSON.stringify(purchaceData),
   };
-  return serviceHelper.openFetch(`${process.env.REACT_APP_API_URL}/product/buy`, requestOptions).then(serviceHelper.handleResponse);
+  return serviceHelper.authFetch(`${process.env.REACT_APP_API_URL}/product/buy`, requestOptions).then(serviceHelper.handleResponse);
 };
 
 export const productService = {

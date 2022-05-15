@@ -29,6 +29,10 @@ const registerUser = (registerData, history) => (dispatch) => {
 };
 
 const fetchUserInfo = () => (dispatch) => {
+  const userInfo = tokenHelper.getDecodedToken().user;
+  if (!userInfo) {
+    window.location.pathname = routes.LOGIN;
+  }
   dispatch(actionHelper.createAction(userActionTypes.USER_FETCH_USER_INFO_FROM_TOKEN, { user: tokenHelper.getDecodedToken().user }));
 };
 
