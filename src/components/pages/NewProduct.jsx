@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Alert, Button, Col, Form, Row } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { routes } from '../../constants';
 
 import { productService } from '../../services';
@@ -23,6 +24,7 @@ function NewProduct() {
       amount: parseInt(amountRef.current.value, 10),
     })
       .then(() => {
+        toast(`Product ${productNameRef.current.value} successfully added`);
         setIsRequestInProgress(false);
         history.push(routes.OWNING_PRODUCTS);
       })

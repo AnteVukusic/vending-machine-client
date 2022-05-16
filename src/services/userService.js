@@ -50,7 +50,7 @@ const deposit = (depositData) => {
     },
     body: JSON.stringify(depositData),
   };
-  return serviceHelper.openFetch(`${process.env.REACT_APP_API_URL}/user/deposit`, requestOptions).then(serviceHelper.handleResponse);
+  return serviceHelper.authFetch(`${process.env.REACT_APP_API_URL}/user/deposit`, requestOptions).then(serviceHelper.handleResponse);
 };
 
 const getUserPurchases = (userId) => {

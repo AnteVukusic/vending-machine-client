@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Alert, Col, Container, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { userActions } from '../../actions/userActions';
 import { productService } from '../../services';
+import { Deposit } from './components';
 import './Machine.css';
 
 function Machine() {
@@ -24,10 +26,6 @@ function Machine() {
       });
   }
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
   function buyItems() {
     productService.buyProducts({
       moneyCount: inputedAmount,
@@ -40,6 +38,7 @@ function Machine() {
       dispatch(userActions.getUserData(user.id));
       setInputedAmount(0);
       setSelectedItems([]);
+      toast('Products sucessfully bought!');
       setErr(null);
     })
       .catch((error) => {
@@ -72,18 +71,28 @@ function Machine() {
     setInputedAmount(0);
   }
 
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
   return (
     <Container>
       <Row className="w-100 mb-3 mt-5">
         <Col>
           <span style={{ fontSize: '1.5rem', fontWeight: '600' }}>Machine</span>
         </Col>
+        <Col xs="6" className="d-flex justify-content-end">
+          <Deposit />
+        </Col>
       </Row>
       <Row className="w-100">
-        <Col xs={12}>
+        <Col xs={12} className="d-flex justify-content-center">
           {err && (
           <Alert style={{ maxWidth: '600px' }} variant="danger">{err}</Alert>
           )}
+        </Col>
+        <Col xs={12} className="d-flex justify-content-center">
+
           <div className="vm-container">
             <div className="vm-items">
               {products && (

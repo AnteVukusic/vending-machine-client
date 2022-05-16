@@ -28,19 +28,6 @@ const registerUser = (registerData, history) => (dispatch) => {
     });
 };
 
-const fetchUserInfo = () => (dispatch) => {
-  const userInfo = tokenHelper.getDecodedToken().user;
-  if (!userInfo) {
-    window.location.pathname = routes.LOGIN;
-  }
-  dispatch(actionHelper.createAction(userActionTypes.USER_FETCH_USER_INFO_FROM_TOKEN, { user: tokenHelper.getDecodedToken().user }));
-};
-
-const logoutUser = () => (dispatch) => {
-  tokenHelper.removeTokenFromLocalStorage();
-  dispatch(actionHelper.createAction(userActionTypes.USER_CLEAR_USER_STATE));
-};
-
 const getUserData = (userId) => (dispatch) => {
   dispatch(actionHelper.createAction(userActionTypes.USER_FETCH_USER_INFO_REQUEST));
   userService.getUser(userId)
@@ -50,6 +37,20 @@ const getUserData = (userId) => (dispatch) => {
     .catch((err) => {
       dispatch(actionHelper.createAction(userActionTypes.USER_FETCH_USER_INFO_FAILURE, { error: err }));
     });
+};
+
+const fetchUserInfo = () => (dispatch) => {
+  const userInfo = tokenHelper.getDecodedToken().user;
+  if (!userInfo) {
+    window.location.pathname = routes.LOGIN;
+  }
+  dispatch(getUserData(userInfo.id));
+  dispatch(actionHelper.createAction(userActionTypes.USER_FETCH_USER_INFO_FROM_TOKEN, { user: tokenHelper.getDecodedToken().user }));
+};
+
+const logoutUser = () => (dispatch) => {
+  tokenHelper.removeTokenFromLocalStorage();
+  dispatch(actionHelper.createAction(userActionTypes.USER_CLEAR_USER_STATE));
 };
 
 const getUserPurchases = (userId) => (dispatch) => {
