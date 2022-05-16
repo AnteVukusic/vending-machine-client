@@ -40,5 +40,6 @@ module.exports = {
     'jsx-a11y/no-autofocus': 'off',
     'react/jsx-no-bind': 'off',
     'no-param-reassign': 'off',
+    'no-underscore-dangle': 'off',
   },
 };

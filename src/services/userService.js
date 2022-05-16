@@ -53,10 +53,21 @@ const deposit = (depositData) => {
   return serviceHelper.openFetch(`${process.env.REACT_APP_API_URL}/user/deposit`, requestOptions).then(serviceHelper.handleResponse);
 };
 
+const getUserPurchases = (userId) => {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+  return serviceHelper.authFetch(`${process.env.REACT_APP_API_URL}/user/get-purchases/${userId}`, requestOptions).then(serviceHelper.handleResponse);
+};
+
 export const userService = {
   loginUser,
   registerUser,
   getUsers,
   getUser,
   deposit,
+  getUserPurchases,
 };

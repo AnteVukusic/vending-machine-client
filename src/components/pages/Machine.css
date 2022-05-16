@@ -1,0 +1,128 @@
+.vm-container {
+  width: 600px;
+  height: 700px;
+  background-color: whitesmoke;
+  border-radius: 1rem;
+  border: solid 5px #007bff;
+  display: flex;
+}
+
+.vm-container .vm-items {
+  width: 380px;
+  margin: 20px;
+  background-color: #d7d7d7;
+  border-radius: 1rem;
+  flex-wrap: wrap;
+  display: flex;
+  max-height: 100%;
+  overflow-y: scroll;
+}
+
+.vm-container .vm-items::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+.vm-container .vm-deposit-box {
+  width: 200px;
+  margin: 20px 20px 20px 0;
+  background-color: #d7d7d7;
+  border-radius: 1rem;
+}
+.vm-container .vm-deposit-box .vm-deposit-box-amount {
+  margin: 20px;
+  background-color: black;
+  color: greenyellow;
+  text-align: center;
+  border-radius: 3px;
+}
+
+.vm-container .vm-deposit-box .vm-deposit-box-coins {
+  margin: 20px;
+  display: flex;
+}
+
+.vm-container .vm-deposit-box .vm-deposit-box-coins-item {
+  width: 20%;
+  border: solid 1px gray;
+  text-align: center;
+  background-color: white;
+  cursor: pointer;
+}
+
+.vm-container .vm-deposit-box .vm-deposit-box-reset {
+  cursor: pointer;
+  margin: 20px;
+  text-align: center;
+  background-color: white;
+  border: solid 1px black;
+}
+
+.vm-container .vm-deposit-box .vm-deposit-box-buy {
+  cursor: pointer;
+  margin: 20px;
+  text-align: center;
+  background-color: #007bff;
+  border-radius: 0.5rem;
+  color: white;
+  padding: 5px;
+}
+
+.vm-container .vm-items .vm-item {
+  font-size: 0.8rem;
+  width: calc(33% - 20px);
+  margin: 10px;
+  padding: 10px;
+  border: solid 1px;
+  background-color: white;
+  cursor: pointer;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: relative;
+}
+
+.vm-container .vm-items .vm-item:hover {
+  border: solid 3px #007bff;
+}
+
+.vm-container .vm-items .vm-item.selected {
+  /* border: solid 3px #00ffe5; */
+  background-color: #c1dfff;
+}
+
+.vm-container .vm-items .vm-item .vm-item-incrementors {
+  display: flex;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.vm-container .vm-items .vm-item .vm-item-incrementors .vm-item-increment {
+  width: 2rem;
+  text-align: center;
+  border: solid 1px;
+  line-height: 2rem;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  border-left: none;
+}
+
+.vm-container .vm-items .vm-item .vm-item-incrementors .vm-item-decrement {
+  width: 2rem;
+  text-align: center;
+  border: solid 1px;
+  line-height: 2rem;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+.vm-container .vm-items .vm-item .vm-item-incrementors .disabled {
+  pointer-events: none;
+  background-color: gray;
+}
+
+.vm-container .vm-items .vm-item .vm-item-amount-selected {
+  position: absolute;
+  bottom: 5px;
+}

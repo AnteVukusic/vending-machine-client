@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Form, Button, Card, Alert, Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -12,7 +12,6 @@ function Login() {
   const userState = useSelector((state) => state.user);
   const nameRef = useRef();
   const passwordRef = useRef();
-  const error = null;
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -25,6 +24,10 @@ function Login() {
     ));
   }
 
+  useEffect(() => () => {
+    dispatch(userActions.clearUserError());
+  }, []);
+
   return (
     <Container
       className="d-flex align-items-center justify-content-center"
@@ -34,7 +37,7 @@ function Login() {
         <Card style={{ width: '400px', margin: 'auto' }}>
           <Card.Body>
             <h2 className="text-center mb-4">Log In</h2>
-            {error && <Alert variant="danger">{error}</Alert>}
+            {userState.error && <Alert variant="danger">{userState.error}</Alert>}
             <Form onSubmit={handleSubmit}>
               <Form.Group id="name">
                 <Form.Label>Name</Form.Label>

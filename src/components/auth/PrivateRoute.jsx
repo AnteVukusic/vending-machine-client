@@ -12,7 +12,6 @@ function PrivateRoute({ component, name, ...rest }) {
   const isTokenExpired = tokenHelper.isTokenExpired();
 
   useEffect(() => {
-    console.log('is user logged in: ', isUserLoggedIn);
     if (!isUserLoggedIn && !isTokenExpired) {
       dispatch(userActions.fetchUserInfo());
     }

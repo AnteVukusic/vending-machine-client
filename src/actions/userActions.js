@@ -41,9 +41,38 @@ const logoutUser = () => (dispatch) => {
   dispatch(actionHelper.createAction(userActionTypes.USER_CLEAR_USER_STATE));
 };
 
+const getUserData = (userId) => (dispatch) => {
+  dispatch(actionHelper.createAction(userActionTypes.USER_FETCH_USER_INFO_REQUEST));
+  userService.getUser(userId)
+    .then((res) => {
+      dispatch(actionHelper.createAction(userActionTypes.USER_FETCH_USER_INFO_SUCCESS, { user: res.user }));
+    })
+    .catch((err) => {
+      dispatch(actionHelper.createAction(userActionTypes.USER_FETCH_USER_INFO_FAILURE, { error: err }));
+    });
+};
+
+const getUserPurchases = (userId) => (dispatch) => {
+  dispatch(actionHelper.createAction(userActionTypes.USER_GET_USER_PURCHASES_REQUEST));
+  userService.getUserPurchases(userId)
+    .then((res) => {
+      dispatch(actionHelper.createAction(userActionTypes.USER_GET_USER_PURCHASES_SUCCESS, { purchases: res.purchases }));
+    })
+    .catch((err) => {
+      dispatch(actionHelper.createAction(userActionTypes.USER_GET_USER_PURCHASES_FAILURE, { error: err }));
+    });
+};
+
+const clearUserError = () => (dispatch) => {
+  dispatch(actionHelper.createAction(userActionTypes.USER_CLEAR_USER_ERROR));
+};
+
 export const userActions = {
   loginUser,
+  clearUserError,
   fetchUserInfo,
   registerUser,
   logoutUser,
+  getUserData,
+  getUserPurchases,
 };

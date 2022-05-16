@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Form, Button, Card, Alert, Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
@@ -25,6 +25,10 @@ function Register() {
       history,
     ));
   }
+
+  useEffect(() => () => {
+    dispatch(userActions.clearUserError());
+  }, []);
 
   return (
     <Container
