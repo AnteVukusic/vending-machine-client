@@ -46,10 +46,20 @@ const getDecodedToken = () => {
   return decodedToken;
 };
 
+const getUserIdFromToken = () => {
+  const token = getDecodedToken();
+  if (!token) return null;
+  const { user } = token;
+
+  if (!user) return null;
+  return user.id;
+};
+
 export const tokenHelper = {
   isTokenExpired,
   removeTokenFromLocalStorage,
   getTokenFromLocalStorage,
   setTokenToLocalStorage,
   getDecodedToken,
+  getUserIdFromToken,
 };

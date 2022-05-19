@@ -39,15 +39,6 @@ const getUserData = (userId) => (dispatch) => {
     });
 };
 
-const fetchUserInfo = () => (dispatch) => {
-  const userInfo = tokenHelper.getDecodedToken().user;
-  if (!userInfo) {
-    window.location.pathname = routes.LOGIN;
-  }
-  dispatch(getUserData(userInfo.id));
-  dispatch(actionHelper.createAction(userActionTypes.USER_FETCH_USER_INFO_FROM_TOKEN, { user: tokenHelper.getDecodedToken().user }));
-};
-
 const logoutUser = () => (dispatch) => {
   tokenHelper.removeTokenFromLocalStorage();
   dispatch(actionHelper.createAction(userActionTypes.USER_CLEAR_USER_STATE));
@@ -71,7 +62,6 @@ const clearUserError = () => (dispatch) => {
 export const userActions = {
   loginUser,
   clearUserError,
-  fetchUserInfo,
   registerUser,
   logoutUser,
   getUserData,

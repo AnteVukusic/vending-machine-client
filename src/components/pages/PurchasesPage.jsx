@@ -5,7 +5,7 @@ import { userHelper } from '../../helpers/userHelper';
 import { userService } from '../../services';
 import { Deposit, PurchasedProductCard } from './components';
 
-function Purchases() {
+function PurchasesPage() {
   const { user } = useSelector((state) => state.user);
   const [purchases, setPurchases] = useState([]);
   const [err, setErr] = useState(null);
@@ -51,4 +51,4 @@ function Purchases() {
   );
 }
 
-export { Purchases };
+export { PurchasesPage };

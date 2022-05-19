@@ -41,11 +41,9 @@ export const user = createReducer(initialState, (builder) => {
     })
     .addCase(userActionTypes.USER_FETCH_USER_INFO_SUCCESS, (state, action) => {
       state.user = action.payload.user;
-    })
-    .addCase(userActionTypes.USER_FETCH_USER_INFO_FROM_TOKEN, (state, action) => {
       state.isUserLoggedIn = true;
       state.isRequestInProgress = false;
-      state.user = action.payload.user;
+      state.error = null;
     })
     .addCase(userActionTypes.USER_GET_USER_PURCHASES_SUCCESS, (state, action) => {
       state.purchases = action.payload.purchases;

@@ -5,9 +5,9 @@ import { toast } from 'react-toastify';
 import { userActions } from '../../actions/userActions';
 import { productService } from '../../services';
 import { Deposit } from './components';
-import './Machine.css';
+import './styles/MachinePage.css';
 
-function Machine() {
+function MachinePage() {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
@@ -146,4 +146,4 @@ function Machine() {
   );
 }
 
-export { Machine };
+export { MachinePage };

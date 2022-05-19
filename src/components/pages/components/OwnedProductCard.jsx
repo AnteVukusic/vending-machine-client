@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './OwnedProductCard.css';
+import '../styles/OwnedProductCard.css';
 
 function OwnedProductCard({ product }) {
   return (

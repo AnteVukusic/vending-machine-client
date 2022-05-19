@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { Form, Button, Card, Alert, Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory } from 'react-router-dom';
 import { userActions } from '../../actions';
 
-function Register() {
+function RegisterPage() {
   const dispatch = useDispatch();
   const history = useHistory();
   const userState = useSelector((state) => state.user);
@@ -79,4 +79,4 @@ function Register() {
   );
 }
 
-export { Register };
+export { RegisterPage };

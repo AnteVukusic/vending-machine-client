@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Alert, Button, Col, Container, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory } from 'react-router-dom';
 import { routes } from '../../constants';
 import { productService } from '../../services';
 import { OwnedProductCard } from './components';
 
-function OwningProducts() {
+function OwningProductsPage() {
   const { user } = useSelector((state) => state.user);
   const history = useHistory();
   const [products, setProducts] = useState([]);
@@ -61,4 +61,4 @@ function OwningProducts() {
   );
 }
 
-export { OwningProducts };
+export { OwningProductsPage };

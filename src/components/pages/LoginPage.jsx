@@ -1,12 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import { Form, Button, Card, Alert, Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link, useHistory } from 'react-router-dom';
 import { userActions } from '../../actions';
 import { routes } from '../../constants';
 
-function Login() {
+function LoginPage() {
   const dispatch = useDispatch();
   const history = useHistory();
   const userState = useSelector((state) => state.user);
@@ -65,4 +64,4 @@ function Login() {
   );
 }
 
-export { Login };
+export { LoginPage };

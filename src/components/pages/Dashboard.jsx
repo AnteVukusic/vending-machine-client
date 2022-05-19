@@ -5,7 +5,7 @@ import { routes } from '../../constants';
 import { roles } from '../../constants/roleConstants';
 import { PrivateRoute } from '../auth';
 import { MainLayout } from './components';
-import { Machine, NewProduct, OwningProducts, Purchases } from '.';
+import { MachinePage, NewProductPage, OwningProductsPage, PurchasesPage } from '.';
 
 function Dashboard() {
   const { user } = useSelector((state) => state.user);
@@ -14,17 +14,17 @@ function Dashboard() {
       case roles.BUYER:
         return (
           <>
-            <PrivateRoute exact path={routes.DASHBOARD} component={Purchases} />
-            <PrivateRoute exact path={routes.PURCHASES} component={Purchases} />
-            <PrivateRoute exact path={routes.MACHINE} component={Machine} />
+            <PrivateRoute exact path={routes.DASHBOARD} component={PurchasesPage} />
+            <PrivateRoute exact path={routes.PURCHASES} component={PurchasesPage} />
+            <PrivateRoute exact path={routes.MACHINE} component={MachinePage} />
           </>
         );
       case roles.SELLER:
         return (
           <>
-            <PrivateRoute exact path={routes.DASHBOARD} component={OwningProducts} />
-            <PrivateRoute exact path={routes.OWNING_PRODUCTS} component={OwningProducts} />
-            <PrivateRoute exact path={routes.NEW_PRODUCT} component={NewProduct} />
+            <PrivateRoute exact path={routes.DASHBOARD} component={OwningProductsPage} />
+            <PrivateRoute exact path={routes.OWNING_PRODUCTS} component={OwningProductsPage} />
+            <PrivateRoute exact path={routes.NEW_PRODUCT} component={NewProductPage} />
           </>
         );
       default:

@@ -6,7 +6,7 @@ import { routes } from '../../constants';
 
 import { productService } from '../../services';
 
-function NewProduct() {
+function NewProductPage() {
   const history = useHistory();
   const [isRequestInProgress, setIsRequestInProgress] = useState(false);
   const [error, setError] = useState(null);
@@ -67,4 +67,4 @@ function NewProduct() {
   );
 }
 
-export { NewProduct };
+export { NewProductPage };
