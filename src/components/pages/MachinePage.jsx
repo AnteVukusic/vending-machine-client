@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { userActions } from '../../actions/userActions';
 import { productService } from '../../services';
-import { Deposit } from './components';
+import { Deposit, WithDraw } from './components';
 import './styles/MachinePage.css';
 
 function MachinePage() {
@@ -33,10 +33,10 @@ function MachinePage() {
         productId: si.product._id,
         amount: si.amount,
       })),
-    }).then(() => {
+    }).then((res) => {
       fetchProducts();
+      setInputedAmount(res.moneyDifference);
       dispatch(userActions.getUserData(user.id));
-      setInputedAmount(0);
       setSelectedItems([]);
       toast('Products sucessfully bought!');
       setErr(null);
@@ -81,8 +81,15 @@ function MachinePage() {
         <Col>
           <span style={{ fontSize: '1.5rem', fontWeight: '600' }}>Machine</span>
         </Col>
-        <Col xs="6" className="d-flex justify-content-end">
-          <Deposit />
+        <Col xs="6">
+          <Row className="d-flex justify-content-end">
+            <Col xs="auto">
+              <Deposit />
+            </Col>
+            <Col xs="auto">
+              <WithDraw />
+            </Col>
+          </Row>
         </Col>
       </Row>
       <Row className="w-100">

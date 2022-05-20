@@ -1,32 +1,42 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { Alert, Button, Col, Container, Form, Modal, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../../actions';
 import { userService } from '../../../services';
+import { userDepositConstants } from '../../../constants';
+import '../styles/Deposit.css';
 
 function Deposit() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   const [show, setShow] = useState(false);
-  const amountRef = useRef();
+  const [amount, setAmount] = useState(0);
   const [err, setErr] = useState(null);
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    setAmount(0);
+  };
   const handleShow = () => setShow(true);
 
   function handleSubmit(e) {
     e.preventDefault();
     userService.deposit({
       userId: user.id,
-      amount: parseInt(amountRef.current.value, 10),
+      amount,
     }).then(() => {
       dispatch(userActions.getUserData(user.id));
       handleClose();
+      setAmount(0);
       toast('Deposit successfully added');
     }).catch((error) => {
       toast(error);
       setErr(error);
     });
+  }
+
+  function incrementAmount(value) {
+    setAmount(amount + value);
   }
 
   return (
@@ -53,10 +63,19 @@ function Deposit() {
                 <Form id="deposit-form" onSubmit={handleSubmit}>
                   <Form.Group id="amount">
                     <Form.Label>Amount</Form.Label>
-                    <Form.Control type="number" ref={amountRef} required />
+                    <Form.Control disabled value={amount} type="number" required />
                   </Form.Group>
                 </Form>
               </Col>
+            </Row>
+            <Row>
+              {userDepositConstants.coins.map((coin, index) => (
+                <Col onClick={() => incrementAmount(coin)} key={`coin-index-${index}`}>
+                  <div className="deposit-coin">
+                    {coin}
+                  </div>
+                </Col>
+              ))}
             </Row>
           </Container>
         </Modal.Body>

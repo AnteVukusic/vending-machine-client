@@ -15,3 +15,9 @@ export const userActionTypes = {
   USER_CLEAR_USER_ERROR: 'USER_CLEAR_USER_ERROR',
   USER_CLEAR_USER_STATE: 'USER_CLEAR_USER_STATE',
 };
+
+export const userDepositConstants = {
+  coins: [
+    5, 10, 20, 50, 100,
+  ],
+};

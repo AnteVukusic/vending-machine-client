@@ -3,7 +3,7 @@ import { Alert, Col, Container, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { userHelper } from '../../helpers/userHelper';
 import { userService } from '../../services';
-import { Deposit, PurchasedProductCard } from './components';
+import { Deposit, PurchasedProductCard, WithDraw } from './components';
 
 function PurchasesPage() {
   const { user } = useSelector((state) => state.user);
@@ -36,8 +36,15 @@ function PurchasesPage() {
         <Col xs="6">
           <span style={{ fontSize: '1.5rem', fontWeight: '600' }}>Purchases</span>
         </Col>
-        <Col xs="6" className="d-flex justify-content-end">
-          <Deposit />
+        <Col xs="6">
+          <Row className="d-flex justify-content-end">
+            <Col xs="auto">
+              <Deposit />
+            </Col>
+            <Col xs="auto">
+              <WithDraw />
+            </Col>
+          </Row>
         </Col>
       </Row>
       <Row className="w-100">

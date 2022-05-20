@@ -53,6 +53,17 @@ const deposit = (depositData) => {
   return serviceHelper.authFetch(`${process.env.REACT_APP_API_URL}/user/deposit`, requestOptions).then(serviceHelper.handleResponse);
 };
 
+const reset = (resetData) => {
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(resetData),
+  };
+  return serviceHelper.authFetch(`${process.env.REACT_APP_API_URL}/user/reset`, requestOptions).then(serviceHelper.handleResponse);
+};
+
 const getUserPurchases = (userId) => {
   const requestOptions = {
     method: 'GET',
@@ -69,5 +80,6 @@ export const userService = {
   getUsers,
   getUser,
   deposit,
+  reset,
   getUserPurchases,
 };

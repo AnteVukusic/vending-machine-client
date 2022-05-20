@@ -1,0 +1,13 @@
+.deposit-coin {
+    background-color: lightgray;
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border: solid 3px gray;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: 600;
+}
