@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Alert, Button, Col, Container, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { routes } from '../../constants';
 import { productService } from '../../services';
 import { OwnedProductCard } from './components';
@@ -19,7 +20,8 @@ function OwningProductsPage() {
         setProducts(res.products);
       })
       .catch((err) => {
-        setError(err.message);
+        toast.error(err);
+        setError(err);
       });
   }, []);
 
@@ -42,11 +44,18 @@ function OwningProductsPage() {
         {!error
           ? (
             <>
-              {products.map((product, index) => (
-                <Col className="mt-3" md="4" key={`purchased-product-card-${index}`}>
-                  <OwnedProductCard product={product} />
-                </Col>
-              ))}
+              {products.length > 0
+                ? (
+                  <>
+                    {products.map((product, index) => (
+                      <Col className="mt-3" md="4" key={`purchased-product-card-${index}`}>
+                        <OwnedProductCard product={product} />
+                      </Col>
+                    ))}
+                  </>
+                ) : (
+                  <Col>User owns no products</Col>
+                )}
             </>
           )
           : (

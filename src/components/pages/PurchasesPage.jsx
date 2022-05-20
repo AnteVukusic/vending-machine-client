@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Alert, Col, Container, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { userHelper } from '../../helpers/userHelper';
 import { userService } from '../../services';
 import { Deposit, PurchasedProductCard, WithDraw } from './components';
@@ -8,6 +9,7 @@ import { Deposit, PurchasedProductCard, WithDraw } from './components';
 function PurchasesPage() {
   const { user } = useSelector((state) => state.user);
   const [purchases, setPurchases] = useState([]);
+  const [productsList, setProductsList] = useState([]);
   const [err, setErr] = useState(null);
 
   useEffect(() => {
@@ -18,8 +20,15 @@ function PurchasesPage() {
       })
       .catch((error) => {
         setErr(error);
+        toast.error(error);
       });
   }, []);
+
+  useEffect(() => {
+    if (purchases && Array.isArray(purchases)) {
+      setProductsList(userHelper.getUserProductsList(purchases));
+    }
+  }, [purchases]);
 
   return (
     <Container>
@@ -48,11 +57,24 @@ function PurchasesPage() {
         </Col>
       </Row>
       <Row className="w-100">
-        {userHelper.getUserProductsList(purchases).map((product, index) => (
-          <Col md="4" key={`purchased-product-card-${index}`}>
-            <PurchasedProductCard product={product} />
-          </Col>
-        ))}
+        {
+          productsList.length > 0
+            ? (
+              <>
+                {productsList.map((product, index) => (
+                  <Col md="4" key={`purchased-product-card-${index}`}>
+                    <PurchasedProductCard product={product} />
+                  </Col>
+                ))}
+              </>
+            )
+            : (
+              <Col>
+                User has no purchased products
+              </Col>
+            )
+        }
+
       </Row>
     </Container>
   );

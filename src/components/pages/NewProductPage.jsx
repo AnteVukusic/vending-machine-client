@@ -31,13 +31,14 @@ function NewProductPage() {
       .catch((err) => {
         setIsRequestInProgress(false);
         setError(err);
+        toast.error(err);
       });
   }
 
   return (
     <Row className="w-100 mt-5 mb-3">
       <Col>
-        <span style={{ fontSize: '1.5rem', fontWeight: '600' }}>OwningProducts</span>
+        <span style={{ fontSize: '1.5rem', fontWeight: '600' }}>Add new products</span>
       </Col>
       <Col xs="12" className="mt-3">
         {error && <Alert variant="danger">{error}</Alert>}

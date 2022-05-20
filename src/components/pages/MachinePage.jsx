@@ -23,6 +23,7 @@ function MachinePage() {
       })
       .catch((error) => {
         setErr(error);
+        toast.error(error);
       });
   }
 
@@ -42,6 +43,7 @@ function MachinePage() {
       setErr(null);
     })
       .catch((error) => {
+        toast.error(error);
         setErr(error);
       });
   }
@@ -100,53 +102,58 @@ function MachinePage() {
         </Col>
         <Col xs={12} className="d-flex justify-content-center">
 
-          <div className="vm-container">
-            <div className="vm-items">
-              {products && (
-                <>
-                  {products.map((p, i) => {
-                    const selectedItem = selectedItems.find((si) => si.product._id === p._id);
-                    return (
-                      (
-                        <div key={`${p.productName}-${i}`} className={`vm-item ${selectedItem ? 'selected' : ''}`}>
-                          <span><b>{p.productName}</b></span>
-                          <span>Stock: {p.amount}</span>
-                          <span>Cost: <b>{p.cost}</b></span>
-                          <div className="vm-item-incrementors">
-                            <div className={`vm-item-decrement ${!selectedItem || (selectedItem && selectedItem.amount === 0) ? 'disabled' : ''}`} onClick={() => selectItem(p, -1)}>-</div>
-                            <div className={`vm-item-increment ${selectedItem && selectedItem.amount >= p.amount ? 'disabled' : ''}`} onClick={() => selectItem(p, 1)}>+</div>
-                          </div>
-                          {selectedItem && (
+          {products && products.length > 0
+            ? (
+              <div className="vm-container">
+                <div className="vm-items">
+                  {products && (
+                  <>
+                    {products.map((p, i) => {
+                      const selectedItem = selectedItems.find((si) => si.product._id === p._id);
+                      return (
+                        (
+                          <div key={`${p.productName}-${i}`} className={`vm-item ${selectedItem ? 'selected' : ''}`}>
+                            <span><b>{p.productName}</b></span>
+                            <span>Stock: {p.amount}</span>
+                            <span>Cost: <b>{p.cost}</b></span>
+                            <div className="vm-item-incrementors">
+                              <div className={`vm-item-decrement ${!selectedItem || (selectedItem && selectedItem.amount === 0) ? 'disabled' : ''}`} onClick={() => selectItem(p, -1)}>-</div>
+                              <div className={`vm-item-increment ${selectedItem && selectedItem.amount >= p.amount ? 'disabled' : ''}`} onClick={() => selectItem(p, 1)}>+</div>
+                            </div>
+                            {selectedItem && (
                             <div className="vm-item-amount-selected">
                               Amount: <b>{selectedItem.amount}</b>
                             </div>
-                          )}
-                        </div>
-                      )
-                    );
-                  })}
-                </>
-              )}
-            </div>
-            <div className="vm-deposit-box">
-              <div className="vm-deposit-box-amount">
-                {inputedAmount}
-              </div>
-              <div className="vm-deposit-box-coins">
-                {[5, 10, 15, 20, 25].map((value, index) => (
-                  <div onClick={() => incrementInputAmount(value)} key={index} className="vm-deposit-box-coins-item">
-                    {value}
+                            )}
+                          </div>
+                        )
+                      );
+                    })}
+                  </>
+                  )}
+                </div>
+                <div className="vm-deposit-box">
+                  <div className="vm-deposit-box-amount">
+                    {inputedAmount}
                   </div>
-                ))}
+                  <div className="vm-deposit-box-coins">
+                    {[5, 10, 15, 20, 25].map((value, index) => (
+                      <div onClick={() => incrementInputAmount(value)} key={index} className="vm-deposit-box-coins-item">
+                        {value}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="vm-deposit-box-reset" onClick={resetInputedAmount}>
+                    Return money
+                  </div>
+                  <div onClick={buyItems} className="vm-deposit-box-buy">
+                    Buy
+                  </div>
+                </div>
               </div>
-              <div className="vm-deposit-box-reset" onClick={resetInputedAmount}>
-                Return money
-              </div>
-              <div onClick={buyItems} className="vm-deposit-box-buy">
-                Buy
-              </div>
-            </div>
-          </div>
+            ) : (
+              <span>There are not products to be sold</span>
+            )}
         </Col>
       </Row>
     </Container>

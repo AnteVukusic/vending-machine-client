@@ -30,7 +30,7 @@ function Deposit() {
       setAmount(0);
       toast('Deposit successfully added');
     }).catch((error) => {
-      toast(error);
+      toast.error(error);
       setErr(error);
     });
   }

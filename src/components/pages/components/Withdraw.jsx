@@ -20,7 +20,7 @@ function WithDraw() {
         handleClose();
         toast('Deposit successfully withdrawn');
       }).catch((error) => {
-        toast(error);
+        toast.error(error);
         setErr(error);
       });
   }

@@ -41,5 +41,6 @@ module.exports = {
     'react/jsx-no-bind': 'off',
     'no-param-reassign': 'off',
     'no-underscore-dangle': 'off',
+    'react/jsx-no-useless-fragment': 'off',
   },
 };
